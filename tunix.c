@@ -60,6 +60,15 @@ void k_init(void){
   ioinit();            /* initialize the deivce */ 
   set_trap_gate(0x80, &syscall);   /* SET THE TRAP GATE*/
 
+  /* initialize the timer and set the clock to the right value for 10ms
+  10 ms we compute the counter value this way; 
+           1.1931817 x 10**6 x 10ms x 10**3 = 11923 (dec) = 0x2E9C 
+  We can also use COUNTS_PER_SEC and divide by 10. 
+  */
+  inittimer();
+  set_timer_count(COUNTS_PER_SEC / 10 ); 
+
+
   /* Note: Could set these with initializers */
   /* Need to cast function pointer type to keep ANSI C happy */
   sysent[TREAD].sy_call = (int (*)(int, ...))sysread;
