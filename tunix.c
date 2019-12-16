@@ -65,9 +65,16 @@ void k_init(void){
            1.1931817 x 10**6 x 10ms x 10**3 = 11923 (dec) = 0x2E9C 
   We can also use COUNTS_PER_SEC and divide by 10. 
   */
-  inittimer();
-  set_timer_count(COUNTS_PER_SEC / 10 ); 
 
+  /* inittimer does the setup for the timer and everything between an sti/cli combo*/
+  inittimer();
+
+  /* because we don't want interupts occuring while we change the timer, we should 
+    put set_timer_count between an sti/cli combination.
+  */
+  sti();
+  set_timer_count(COUNTS_PER_SEC / 10 ); 
+  cli();
 
   /* Note: Could set these with initializers */
   /* Need to cast function pointer type to keep ANSI C happy */

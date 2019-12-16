@@ -33,9 +33,9 @@ void scheduler()
   /* loop from next user process around back to this one */
   for(i=nextuproc, k=0;k<NPROC-1;i==NPROC-1?i=1:i++,k++){
     if (proctab[i].p_status == RUN){
-	olduproc = i;
-	curproc=&proctab[i];	/* chosen to run */
-	break;
+    	olduproc = i;
+    	curproc=&proctab[i];	/* chosen to run */
+    	break;
     }
   }
   /* if all user processes are blocked, use process 0 */

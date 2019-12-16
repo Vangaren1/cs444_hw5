@@ -144,5 +144,6 @@ void set_timer_count(int count)
 void irq0inthandc(void)
 {
   pic_end_int();		/* notify PIC that its part is done */
+  putchar('*'); 
   tickcount++;			/* count the tick in global var */
 }

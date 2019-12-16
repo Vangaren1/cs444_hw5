@@ -300,6 +300,6 @@ void kickout(int baseport)
 {
     outpt(baseport+UART_IER, UART_IER_RDI);
     outpt(baseport+UART_IER, UART_IER_RDI|UART_IER_THRI);
-    }
+}
 
 
